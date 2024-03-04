@@ -4,7 +4,7 @@ CREATE TABLE PAISES
 (id_pais int ,
 descripcion varchar (100),
 CONSTRAINT PK_paises PRIMARY KEY (id_pais)
-)
+);
 
 CREATE TABLE PROVINCIAS 
 (id_provincia int ,
@@ -13,7 +13,7 @@ id_pais int ,
 CONSTRAINT PK_provincias PRIMARY KEY (id_provincia),
 CONSTRAINT FK_provincias_paises FOREIGN KEY (id_pais)
 REFERENCES paises (id_pais) 
-)
+);
 
 CREATE TABLE LOCALIDADES 
 (id_localidad int  ,
@@ -22,7 +22,7 @@ id_provincia int,
 CONSTRAINT PK_localidades PRIMARY KEY (id_localidad),
 CONSTRAINT FK_localidades_provincias FOREIGN KEY (id_provincia)
 REFERENCES provincias (id_provincia) 
-)
+);
 
 CREATE TABLE BARRIOS 
 (id_barrio int,
@@ -31,32 +31,32 @@ id_localidad int ,
 CONSTRAINT PK_barrios PRIMARY KEY (id_barrio),
 CONSTRAINT FK_barrios_localidades FOREIGN KEY (id_localidad)
 REFERENCES localidades (id_localidad) 
-)
+);
 
 
 CREATE TABLE TIPOS_DOCUMENTOS
 (id_tipo_doc int,
 descripcion varchar (70),
 CONSTRAINT PK_tipos_documentos PRIMARY KEY (id_tipo_doc)
-)
+);
 CREATE TABLE OBRAS_SOCIALES
 (id_obra_social int,
 nombre varchar (70),
 CONSTRAINT PK_obras_sociales PRIMARY KEY (id_obra_social)
-)
+);
 
 CREATE TABLE TIPOS_MOVIMIENTOS
 (id_tipo_movimiento int,
 descripcion varchar (50),
 CONSTRAINT PK_tipos_movimientos PRIMARY KEY (id_tipo_movimiento)
-)
+);
 
 CREATE TABLE PROCEDIMIENTOS_ODONTOLOGICOS
 (id_proc_odontologico int,
 nombre varchar (100),
 precio int,
 CONSTRAINT PK_procedimientos_odontologicos PRIMARY KEY (id_proc_odontologico)
-) 
+);
 
 
 CREATE TABLE FORMAS_DE_PAGOS
@@ -64,19 +64,19 @@ CREATE TABLE FORMAS_DE_PAGOS
 descripcion varchar  (100),
 recargo int,
 CONSTRAINT  PK_formas_pagos PRIMARY KEY (id_forma_pago)
-)
+);
 
 CREATE TABLE TIPOS_CONTACTOS
 (id_tipo_contacto int,
 tipo_contacto varchar (100),
 CONSTRAINT PK_tipos_contactos PRIMARY KEY (id_tipo_contacto)
-)
+);
 
 CREATE TABLE ESPECIALIDADES
 (id_especialidad int,
 descripcion varchar (100),
 CONSTRAINT PK_especialidades PRIMARY KEY (id_especialidad)
-)
+);
 
 CREATE TABLE MARCAS
 (id_marca int,
@@ -88,7 +88,7 @@ CREATE TABLE TIPOS_REPARACIONES
 (id_tipo_reparacion  int,
 descripcion varchar (150),
 CONSTRAINT PK_tipos_reparaciones PRIMARY KEY (id_tipo_reparacion)
-)
+);
 
 CREATE TABLE PACIENTES
 (id_paciente int,
@@ -110,7 +110,7 @@ CONSTRAINT FK_pacientes_barrios  FOREIGN KEY (id_barrio)
 REFERENCES barrios (id_barrio),
 CONSTRAINT FK_pacientes_obras_sociales FOREIGN KEY (id_obra_social)
 REFERENCES obras_sociales (id_obra_social)
-)
+);
 
 CREATE TABLE DENTISTAS
 (nro_dentista int,
@@ -127,7 +127,7 @@ CONSTRAINT FK_dentistas_tipos_documentos FOREIGN KEY (id_tipo_doc)
 REFERENCES  tipos_documentos (id_tipo_doc),
 CONSTRAINT FK_dentistas_especialidades FOREIGN KEY(id_especialidad)
 REFERENCES especialidades (id_especialidad)
-)
+);
 
 CREATE TABLE CLINICAS
 (id_clinica int,
@@ -140,7 +140,7 @@ id_barrio int,
 CONSTRAINT PK_clinicas PRIMARY KEY (id_clinica),
 CONSTRAINT FK_clinicas_barrios FOREIGN KEY (id_barrio)
 REFERENCES barrios (id_barrio)
-) 
+);
 
 CREATE TABLE FACTURAS
 (nro_factura int,
@@ -155,7 +155,7 @@ CONSTRAINT FK_facturas_pacientes FOREIGN KEY (id_paciente)
 REFERENCES pacientes (id_paciente),
 CONSTRAINT FK_facturas_dentistas FOREIGN KEY (nro_dentista)
 REFERENCES dentistas (nro_dentista)
-)
+);
 
 CREATE TABLE DETALLE_FACTURAS
 (id_detalle_factura int,
@@ -167,7 +167,7 @@ CONSTRAINT FK_detalles_facturas_facturas FOREIGN KEY (nro_factura)
 REFERENCES facturas (nro_factura),
 CONSTRAINT FK_detalles_facturas_procedimientos_odontologicos FOREIGN KEY (id_proc_odontologico)
 REFERENCES procedimientos_odontologicos (id_proc_odontologico)
-)
+);
 
 CREATE TABLE FACTURAS_FORMAS_PAGOS
 (id_factura_forma_pago int,
@@ -179,7 +179,7 @@ CONSTRAINT FK_facturas_formas_pagos_facturas FOREIGN KEY (nro_factura)
 REFERENCES facturas (nro_factura),
 CONSTRAINT FK_facturas_formas_pagos_formas_de_pagos FOREIGN KEY (id_forma_pago)
 REFERENCES formas_de_pagos (id_forma_pago)
-)
+);
 
 CREATE TABLE CONSULTORIOS
 (id_consultorio int,
@@ -188,7 +188,7 @@ id_clinica int,
 CONSTRAINT PK_consultorios PRIMARY KEY (id_consultorio),
 CONSTRAINT FK_consultorios_clinicas FOREIGN KEY (id_clinica)
 REFERENCES clinicas (id_clinica)
-)
+);
 
 CREATE TABLE CONTACTOS	
 (id_contacto int,
@@ -200,7 +200,7 @@ CONSTRAINT FK_contactos_tipos_contactos FOREIGN KEY (id_tipo_contacto)
 REFERENCES tipos_contactos (id_tipo_contacto),
 CONSTRAINT FK_contactos_clinicas FOREIGN KEY (id_clinica)
 REFERENCES clinicas (id_clinica)
-)
+);
 
 CREATE TABLE OBRAS_SOCIALES_PROCEDIMIENTOS
 (id_obra_social_procedimiento int,
@@ -212,7 +212,7 @@ CONSTRAINT FK_obras_sociales_procedimientos_procedimientos_odontologicos FOREIGN
 REFERENCES procedimientos_odontologicos (id_proc_odontologico),
 CONSTRAINT FK_obras_sociales_procedimientos_obras_sociales FOREIGN KEY (id_obra_social)
 REFERENCES obras_sociales (id_obra_social)
-)
+);
 
 CREATE TABLE PACIENTES_PROCEDIMIENTOS_ODONTOLOGICOS
 (id_paciente_proc_odontologico int,		
@@ -225,7 +225,7 @@ CONSTRAINT FK_pacientes_procedimientos_odontologicos_pacientes FOREIGN KEY (id_p
 REFERENCES pacientes (id_paciente),
 CONSTRAINT FK_pacientes_procedimientos_odontologicos_proce_odontologicos FOREIGN KEY (id_proc_odontologico)
 REFERENCES procedimientos_odontologicos (id_proc_odontologico)
-)
+);
 
 CREATE TABLE INSTRUMENTOS
 (id_instrumento int,
@@ -241,7 +241,7 @@ CONSTRAINT FK_instrumentos_marcas FOREIGN KEY (id_marca)
 REFERENCES marcas (id_marca),
 CONSTRAINT FK_instrumentos_paises FOREIGN KEY (id_pais) 
 REFERENCES paises (id_pais)
-)
+);
 
 
 CREATE TABLE INSTRUMENTOS_CONSULTORIOS
@@ -256,7 +256,7 @@ CONSTRAINT FK_instrumentos_consultorios_dentistas FOREIGN KEY (nro_dentista)
 REFERENCES dentistas (nro_dentista),
 CONSTRAINT FK_instrumentos_consultorios_consultorios FOREIGN KEY (id_consultorio)
 REFERENCES consultorios (id_consultorio)
-)
+);
 
 CREATE TABLE MATERIALES
 (id_material int,
@@ -270,7 +270,7 @@ CONSTRAINT FK_materiales_marcas FOREIGN KEY (id_marca)
 REFERENCES marcas (id_marca),
 CONSTRAINT FK_materiales_paises FOREIGN KEY (id_pais)
 REFERENCES paises (id_pais)
-)
+);
 CREATE TABLE INVENTARIOS
 (id_inventario int,
 id_instrumento int,
@@ -285,7 +285,7 @@ CONSTRAINT Fk_inventarios_materiales FOREIGN KEY (id_material)
 REFERENCES materiales (id_material),
 CONSTRAINT FK_inventarios_tipos_movimientos FOREIGN KEY (id_tipo_movimiento)
 REFERENCES tipos_movimientos (id_tipo_movimiento)
-)	
+);
 
 CREATE TABLE PROCEDIMIENTOS_X_INSTRUMENTOS
 (id_proc_instrumento int,
@@ -300,7 +300,7 @@ CONSTRAINT FK_procedimientos_x_instrumentos_materiales  FOREIGN KEY (id_material
 REFERENCES materiales (id_material),
 CONSTRAINT FK_procedimientos_x_instrumentos_instrumentos FOREIGN KEY (id_instrumento)
 REFERENCES  instrumentos (id_instrumento)
-)
+);
 
 CREATE TABLE REPARACIONES
 (id_reparacion int,
@@ -312,14 +312,14 @@ CONSTRAINT FK_reparaciones_instrumentos FOREIGN KEY (id_instrumento)
 REFERENCES instrumentos (id_instrumento),
 CONSTRAINT FK_reparaciones_tipos_reparaciones FOREIGN KEY (id_tipo_reparacion)
 REFERENCES tipos_reparaciones (id_tipo_reparacion)
-)
+);
 
 
 
------------------------INSERT DE TODAS LAS TABLAS DE LA BASE DE DATOS  CENTRO_ODONTOLOGICO----------------------------------------------------------------------
+-- INSERT DE TODAS LAS TABLAS DE LA BASE DE DATOS  CENTRO_ODONTOLOGICO
 
 
---  ------------------------------------------ INSERT DE PAISES
+-- INSERT DE PAISES
 
 INSERT INTO PAISES (id_pais,descripcion) VALUES(1,'Argentina');
 INSERT INTO PAISES (id_pais,descripcion) VALUES(2,'Uruguay');
@@ -346,7 +346,7 @@ INSERT INTO PAISES (id_pais,descripcion) VALUES(21,'China');
 
 
 
---  ------------------------------------------ INSERT DE PROVINCIAS
+-- INSERT DE PROVINCIAS
 
 
 INSERT INTO PROVINCIAS (id_provincia,descripcion,id_pais) VALUES(1,'Cordoba',1);
@@ -378,7 +378,7 @@ INSERT INTO PROVINCIAS (id_provincia,descripcion,id_pais) VALUES(26,'Bogota',6);
 
 
 
---  ------------------------------------------ INSERT DE LOCALIDADES
+-- INSERT DE LOCALIDADES
 
 
 INSERT INTO LOCALIDADES (id_localidad,descripcion,id_provincia) VALUES(1,'Cordoba',1);
@@ -427,7 +427,7 @@ INSERT INTO LOCALIDADES (id_localidad,descripcion,id_provincia) VALUES(43,'Bogot
 
 
 
---  ------------------------------------------ INSERT DE BARRIOS
+-- INSERT DE BARRIOS
 
 
 
@@ -454,7 +454,7 @@ INSERT INTO BARRIOS(id_barrio,descripcion,id_localidad) VALUES (20,'Patricios',1
 
 
 
---  ------------------------------------------ INSERT DE TIPOS DE DOCUMENTOS
+-- INSERT DE TIPOS DE DOCUMENTOS
 
 INSERT INTO TIPOS_DOCUMENTOS (id_tipo_doc, descripcion) VALUES(1,'DNI');
 INSERT INTO TIPOS_DOCUMENTOS (id_tipo_doc, descripcion) VALUES(2,'Pasaporte');
@@ -466,7 +466,7 @@ INSERT INTO TIPOS_DOCUMENTOS (id_tipo_doc, descripcion) VALUES(7,'Cuit');
 
 
 
---  ------------------------------------------ INSERT DE OBRAS SOCIALES
+-- INSERT DE OBRAS SOCIALES
 
 
 INSERT INTO OBRAS_SOCIALES(id_obra_social,nombre) VALUES(1,'Nobis');
@@ -492,7 +492,7 @@ INSERT INTO OBRAS_SOCIALES(id_obra_social,nombre) VALUES(20,'Pami');
 
 
 
---  ------------------------------------------ INSERT DE TIPOS DE MOVIMIENTOS
+-- INSERT DE TIPOS DE MOVIMIENTOS
 
 
 
@@ -502,7 +502,7 @@ INSERT INTO TIPOS_MOVIMIENTOS(id_tipo_movimiento, descripcion)VALUES(3,'Reparaci
 
 
 
---  ------------------------------------------ INSERT DE PROCEDIMIENTOS ODONTOLOGICOS
+-- INSERT DE PROCEDIMIENTOS ODONTOLOGICOS
 
 
 INSERT INTO PROCEDIMIENTOS_ODONTOLOGICOS (id_proc_odontologico,nombre,precio)VALUES(1,'Frenos Dentales',200000);
@@ -522,7 +522,7 @@ INSERT INTO PROCEDIMIENTOS_ODONTOLOGICOS (id_proc_odontologico,nombre,precio)VAL
 INSERT INTO PROCEDIMIENTOS_ODONTOLOGICOS (id_proc_odontologico,nombre,precio)VALUES(15,'Reconstruccion e Injerto de Hueso Bucal ',100000);
 
 
---  ------------------------------------------ INSERT DE FORMAS DE PAGOS
+-- INSERT DE FORMAS DE PAGOS
 
 
 
@@ -533,7 +533,7 @@ INSERT INTO FORMAS_DE_PAGOS (id_forma_pago, descripcion,recargo) VALUES(4,'Tarje
 INSERT INTO FORMAS_DE_PAGOS (id_forma_pago, descripcion,recargo) VALUES(5,'Marcado Pago',10);
 
 
---  ------------------------------------------ INSERT DE TIPOS CONTACTOS
+-- INSERT DE TIPOS CONTACTOS
 
 
 INSERT INTO  TIPOS_CONTACTOS (id_tipo_contacto,tipo_contacto)VALUES(1,'Teléfono');
@@ -547,7 +547,7 @@ INSERT INTO  TIPOS_CONTACTOS (id_tipo_contacto,tipo_contacto)VALUES(8,'Telegram'
 
 
 
---  ------------------------------------------ INSERT DE ESPECIALIDADES
+-- INSERT DE ESPECIALIDADES
 
 INSERT INTO ESPECIALIDADES (id_especialidad,descripcion)VALUES(1,'Dentista General');
 INSERT INTO ESPECIALIDADES (id_especialidad,descripcion)VALUES(2,'Odontopediatria');
@@ -561,7 +561,7 @@ INSERT INTO ESPECIALIDADES (id_especialidad,descripcion)VALUES(9,'Rehabilitacion
 INSERT INTO ESPECIALIDADES (id_especialidad,descripcion)VALUES(10,'Implantologia');
 
 
---  ------------------------------------------ INSERT DE MARCAS
+-- INSERT DE MARCAS
 
 
 
@@ -594,7 +594,7 @@ INSERT INTO MARCAS (id_marca ,marca)VALUES(26,'Woodpecker');
 
 
 
---  ------------------------------------------ INSERT DE TIPOS DE REPARACIONES
+-- INSERT DE TIPOS DE REPARACIONES
 
 
 INSERT INTO TIPOS_REPARACIONES(id_tipo_reparacion,descripcion)VALUES(1,'Reemplazo de una pieza');
@@ -611,7 +611,7 @@ INSERT INTO TIPOS_REPARACIONES(id_tipo_reparacion,descripcion)VALUES(11,'Cambio 
 INSERT INTO TIPOS_REPARACIONES(id_tipo_reparacion,descripcion)VALUES(12,'Cambio de motor');
 
 
---  ------------------------------------------ INSERT DE PACIENTES
+-- INSERT DE PACIENTES
 
 
 
@@ -639,7 +639,7 @@ INSERT INTO PACIENTES (id_paciente,nombre,apellido,nro_telefono,fecha_nacimiento
 
 
 
---  ------------------------------------------ INSERT DE DENTISTAS
+-- INSERT DE DENTISTAS
 
 
 INSERT INTO DENTISTAS(nro_dentista,nombre,apellido,id_tipo_doc,nro_documento,nro_telefono,id_especialidad,nro_matricula,email )VALUES(1,'Carlos','Raul',1,16254836,351511975,1,'MO96947','carlosruiz@gmail.com');
@@ -665,7 +665,7 @@ INSERT INTO DENTISTAS(nro_dentista,nombre,apellido,id_tipo_doc,nro_documento,nro
 
 
 
---  ------------------------------------------ INSERT DE LA CLINICA
+-- INSERT DE LA CLINICA
 
 
 
@@ -673,11 +673,11 @@ INSERT INTO DENTISTAS(nro_dentista,nombre,apellido,id_tipo_doc,nro_documento,nro
 
 
 
---  ------------------------------------------ INSERT DE FACTURAS
+-- INSERT DE FACTURAS
 
 
 
-INSERT INTO FACTURAS(nro_factura,fecha,id_clinica,id_paciente,nro_dentista)VALUES(1,'2016-10-02',1,1,1);
+ INSERT INTO FACTURAS(nro_factura,fecha,id_clinica,id_paciente,nro_dentista)VALUES(1,'2016-10-02',1,1,1);
  INSERT INTO FACTURAS(nro_factura,fecha,id_clinica,id_paciente,nro_dentista)VALUES(2,'2016-11-18',1,2,2);
  INSERT INTO FACTURAS(nro_factura,fecha,id_clinica,id_paciente,nro_dentista)VALUES(3,'2017-06-24',1,3,3);
  INSERT INTO FACTURAS(nro_factura,fecha,id_clinica,id_paciente,nro_dentista)VALUES(4,'2018-09-06',1,4,4);
@@ -710,7 +710,7 @@ INSERT INTO FACTURAS(nro_factura,fecha,id_clinica,id_paciente,nro_dentista)VALUE
 
 
 
---  ------------------------------------------ INSERT DE DETALLES FACTURAS
+-- INSERT DE DETALLES FACTURAS
 
 
 
@@ -746,7 +746,7 @@ INSERT INTO FACTURAS(nro_factura,fecha,id_clinica,id_paciente,nro_dentista)VALUE
  INSERT INTO DETALLE_FACTURAS(id_detalle_factura,nro_factura,id_proc_odontologico,precio)VALUES(30,30,10,18250);
  
 
---  ------------------------------------------ INSERT DE FACTURAS FORMAS DE PAGOS
+-- INSERT DE FACTURAS FORMAS DE PAGOS
 
 
 INSERT INTO FACTURAS_FORMAS_PAGOS(id_factura_forma_pago,nro_factura,id_forma_pago,monto)VALUES(1,1,1,30000);
@@ -797,10 +797,10 @@ INSERT INTO FACTURAS_FORMAS_PAGOS(id_factura_forma_pago,nro_factura,id_forma_pag
 
 
 
---  ------------------------------------------ INSERT DE CONSULTORIOS
+-- INSERT DE CONSULTORIOS
 
 
- INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(1,'Consultorio N_1',1);
+INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(1,'Consultorio N_1',1);
 INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(2,'Consultorio N_2',1);
 INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(3,'Consultorio N_3',1);
 INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(4,'Consultorio N_4',1);
@@ -811,10 +811,10 @@ INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(8,'Consul
 INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(9,'Consultorio N_9',1);
 INSERT INTO CONSULTORIOS (id_consultorio,descripcion,id_clinica)VALUES(10,'Consultorio N_10',1);
 
---  ------------------------------------------ INSERT DE CONTACTOS
+-- INSERT DE CONTACTOS
 
 
-INSERT INTO CONTACTOS (id_contacto,contacto,id_tipo_contacto,id_clinica)VALUES(1,'Odontodentisll',6,1);
+ INSERT INTO CONTACTOS (id_contacto,contacto,id_tipo_contacto,id_clinica)VALUES(1,'Odontodentisll',6,1);
  INSERT INTO CONTACTOS (id_contacto,contacto,id_tipo_contacto,id_clinica)VALUES(2,'Dentaldentisll',3,1); 
  INSERT INTO CONTACTOS (id_contacto,contacto,id_tipo_contacto,id_clinica)VALUES(3,'3515895724',4,1);
  INSERT INTO CONTACTOS (id_contacto,contacto,id_tipo_contacto,id_clinica)VALUES(4,'03514780852',1,1);
@@ -827,7 +827,7 @@ INSERT INTO CONTACTOS (id_contacto,contacto,id_tipo_contacto,id_clinica)VALUES(1
 
 
 
---  ------------------------------------------ INSERT DE OBRA SOCIAL PROCEDIMIENTOS
+-- INSERT DE OBRA SOCIAL PROCEDIMIENTOS
 
 
  INSERT INTO OBRAS_SOCIALES_PROCEDIMIENTOS(id_obra_social_procedimiento,id_proc_odontologico,id_obra_social,porc_cobertura)VALUES(1,1,11,60);
@@ -853,7 +853,7 @@ INSERT INTO CONTACTOS (id_contacto,contacto,id_tipo_contacto,id_clinica)VALUES(1
 
 
 
---  ------------------------------------------ INSERT DE PACIENTES PROCEDIMIENTOS ODONTOLOGICOS
+-- INSERT DE PACIENTES PROCEDIMIENTOS ODONTOLOGICOS
 
 
 INSERT INTO PACIENTES_PROCEDIMIENTOS_ODONTOLOGICOS(id_paciente_proc_odontologico,id_paciente,id_proc_odontologico,fecha,costo)VALUES(1,1,1,'2016-10-02',55000);
@@ -890,7 +890,7 @@ INSERT INTO PACIENTES_PROCEDIMIENTOS_ODONTOLOGICOS(id_paciente_proc_odontologico
 
 
 
---  ------------------------------------------ INSERT DE INSTRUMENTOS
+-- INSERT DE INSTRUMENTOS
 
 
 INSERT INTO INSTRUMENTOS(id_instrumento,nombre,id_marca,id_pais,nro_serie,fecha_adquisicion,fecha_ult_revision,fecha_proxima_revision)VALUES(1,'Espejo dental',1,21,40001,'2016-3-20','2023-4-3','2023-7-3');
@@ -925,7 +925,7 @@ INSERT INTO INSTRUMENTOS(id_instrumento,nombre,id_marca,id_pais,nro_serie,fecha_
 INSERT INTO INSTRUMENTOS(id_instrumento,nombre,id_marca,id_pais,nro_serie,fecha_adquisicion,fecha_ult_revision,fecha_proxima_revision)VALUES(30,'Espejo dental',1,21,99998,'2023-5-20','2023-4-03','2023-7-03');
 
 
---  ------------------------------------------ INSERT DE INSTRUMETOS  CONSULTORIOS
+-- INSERT DE INSTRUMETOS  CONSULTORIOS
 
 
 
@@ -969,7 +969,7 @@ INSERT INTO INSTRUMENTOS(id_instrumento,nombre,id_marca,id_pais,nro_serie,fecha_
 
 
 
---  ------------------------------------------ INSERT DE MATERIALES
+-- INSERT DE MATERIALES
 
 
 
@@ -1004,7 +1004,7 @@ INSERT INTO MATERIALES(id_material,nombre,id_marca,id_pais,fecha_vencimiento,can
 
 
 
---  ------------------------------------------ INSERT DE INVENTARIO
+-- INSERT DE INVENTARIO
 
 
 INSERT INTO INVENTARIOS(id_inventario,id_instrumento,id_tipo_movimiento,fecha,cantidad)VALUES(1,3,2,'2019-5-07',1);
@@ -1037,7 +1037,7 @@ INSERT INTO INVENTARIOS (id_inventario,id_material,id_tipo_movimiento,fecha,cant
 INSERT INTO INVENTARIOS(id_inventario,id_material,id_tipo_movimiento,fecha,cantidad)VALUES(28,25,2,'2017-7-07',2);
 
 
---  ------------------------------------------ INSERT DE  PROCEDIMIENTOS INSTRUMENTOS
+--  INSERT DE  PROCEDIMIENTOS INSTRUMENTOS
 
  
 INSERT INTO PROCEDIMIENTOS_X_INSTRUMENTOS(id_proc_instrumento,id_proc_odontologico,id_material,cantidad)VALUES(1,1,11,32);
@@ -1070,7 +1070,7 @@ INSERT INTO PROCEDIMIENTOS_X_INSTRUMENTOS(id_proc_instrumento,id_proc_odontologi
 
 
 
---  ------------------------------------------ INSERT DE REPARACIONES
+-- INSERT DE REPARACIONES
 
 
 
@@ -1101,11 +1101,11 @@ INSERT INTO REPARACIONES(id_reparacion,id_instrumento,id_tipo_reparacion,costo)V
 
 
 
-------VISTAS DE LA BASE DE DATOS-------------------------------------------
+-- VISTAS DE LA BASE DE DATOS
 
 
 
-Vista -1/ Descripcion 
+/*Vista -1/ Descripcion 
 
 Se necesita llevar a cabo Un registro de todos los instrumentos utilizados en los distintos consultorios de la Clínica Dental DentisLL, para ellos deberá mostrar los siguientes Datos,
 Identificador, Nombre, Nro_Serie, Marca y País de Origen de dichos Instrumentos, también cuando fue que se los Adquirido, ultima resion que tuvieron y cuando se los volverá a chequear,
@@ -1122,7 +1122,7 @@ TABLAS UTILIZADAS:
 * DENTISTAS
 * CONSULTORIOS 
 * ESPECIALIDADES 
-* CLINICAS
+* CLINICAS*/
 
 
 
@@ -1147,7 +1147,7 @@ ORDER BY I.nombre DESC;
 
 -----------------------------------------------------------------------------------------------------------------------
 
-Vista- 2
+/*Vista- 2
 
 
 
@@ -1171,7 +1171,7 @@ TABLAS UTILIZADAS:
 * DETALLES_FACTURAS
 * PROCEDIMIENTOS_ODONTOLOGICOS
 * FACTURAS_FORMAS_PAGOS
-* FORMAS_DE_PAGOS
+* FORMAS_DE_PAGOS*/
 
 
 
@@ -1197,17 +1197,17 @@ ORDER BY
     F.fecha DESC
 LIMIT 15;
 
-------------------------------------------------------------------------------------------------------------------
-
-FUNCIONES:
 
 
-A través de la siguiente función vamos a poder determinar con el ingreso de un  numero,
+-- FUNCIONES:
+
+
+/*A través de la siguiente función vamos a poder determinar con el ingreso de un  numero,
 quien fue el paciente que se atendió y cual fue su dentista de cabecera, 
 esto nos permitirá brindar un mejor seguimiento para poder brindarle al paciente un diagnostico  completo. 
 Con el tratamiento que realizo y cual fue su dentista a cargo del mismo.
 Estaremos Implementando la Tabla de (Facturas Pacientes  y Dentistas)  de  esta manera estaremos uniendo ,
- tablas mediante un JOIN  el cual nos permitirá obtener una función  de acuerdo a lo realizado. 
+ tablas mediante un JOIN  el cual nos permitirá obtener una función  de acuerdo a lo realizado.*/ 
 
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `obtener_paciente_y_dentista`(nro_factura_param INT) RETURNS varchar(255) CHARSET utf8mb4
@@ -1227,18 +1227,18 @@ END
 
 
 
------------------------------------------------------------------------------------------------------------------------------
-
-
-
-STORED PROCEDURE:
 
 
 
 
-Mediante el siguiente Stored Procedure vamos a poder llevar un control mas registrado de todos los procedimientos que se practican o que se llevan a cabo en la Clínica DENTISLL. Esto nos traerá muchos beneficios ya que podremos evaluar el precio de dichos procedimientos y llevar un control y modificar en caso que el tratamiento aumente su valor, de todas formas, también llevar a cabo promociones a nuestros clientes para que puedan beneficiarse y realizarse mas de un tratamiento.
+-- STORED PROCEDURE:
+
+
+
+
+/*Mediante el siguiente Stored Procedure vamos a poder llevar un control mas registrado de todos los procedimientos que se practican o que se llevan a cabo en la Clínica DENTISLL. Esto nos traerá muchos beneficios ya que podremos evaluar el precio de dichos procedimientos y llevar un control y modificar en caso que el tratamiento aumente su valor, de todas formas, también llevar a cabo promociones a nuestros clientes para que puedan beneficiarse y realizarse mas de un tratamiento.
 Esto va a incrementar el trabajo de los dentistas y por en de vamos a obtener un mejor trabajo  mas practicidad y satisfacción de nuestros pacientes. Y lograr que en un futuro, aumente la capacidad de clientes y expandir la clínica.
-Se trabajo sobre la Tabla de Procedimientos_Odontologicos que tiene los campos de (Id_procedimiento , Nombre , Precio ).
+Se trabajo sobre la Tabla de Procedimientos_Odontologicos que tiene los campos de (Id_procedimiento , Nombre , Precio ).*/
 
 
 
@@ -1260,12 +1260,11 @@ END
 call centro_odontologico.sp_get_procedimientos(50000, 180000);
 
 
------------------------------------------------------------------------------------------------------------------------------------------
 
-TRIGGERS:
+-- TRIGGERS:
 
 
-Este trigger, llamado Tr_Insertar_Facturas, se activará después de insertar una fila en la tabla Productos. Su objetivo es insertar una nueva fila en la tabla FACTURAS con los siguientes valores:
+/*Este trigger, llamado Tr_Insertar_Facturas, se activará después de insertar una fila en la tabla Productos. Su objetivo es insertar una nueva fila en la tabla FACTURAS con los siguientes valores:
 
 nro_factura: El valor de nro_factura de la fila recién insertada en Facturas
 fecha: La fecha actual obtenida mediante la función CURDATE().
@@ -1273,7 +1272,7 @@ id_clinica: El valor de id_clinica de la fila recién insertada en Facturas.
 id_paciente: El valor de id_paciente de la fila recién insertada en Facturas.
 nro_dentista: El valor de nro_dentista de la fila recién insertada en Facturas.
 En resumen, cada vez que se inserta un nuevo producto, este trigger asegura que se registre automáticamente una nueva factura en la tabla FACTURAS con la información correspondiente.
-Asi se mantendrá Actualizada la BD garantizando  automatización , que ahorrara tiempo  y mantendra la seguridad e integridad de los Datos que se almacenan en la BD Centro_Odontologico.
+Asi se mantendrá Actualizada la BD garantizando  automatización , que ahorrara tiempo  y mantendra la seguridad e integridad de los Datos que se almacenan en la BD Centro_Odontologico.*/
 
 
 
