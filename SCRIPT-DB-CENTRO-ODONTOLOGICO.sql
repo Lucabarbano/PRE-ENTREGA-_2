@@ -1,4 +1,5 @@
-USE CENTRO_ODONTOLOGICO
+CREATE  DATABASES  CENTRO_ODONTOLOGICO;
+USE CENTRO_ODONTOLOGICO;
 
 CREATE TABLE PAISES
 (id_pais int ,
@@ -82,7 +83,7 @@ CREATE TABLE MARCAS
 (id_marca int,
 marca varchar (100),
 CONSTRAINT PK_marcas PRIMARY KEY (id_marca)
-)
+);
 
 CREATE TABLE TIPOS_REPARACIONES
 (id_tipo_reparacion  int,
@@ -271,6 +272,7 @@ REFERENCES marcas (id_marca),
 CONSTRAINT FK_materiales_paises FOREIGN KEY (id_pais)
 REFERENCES paises (id_pais)
 );
+
 CREATE TABLE INVENTARIOS
 (id_inventario int,
 id_instrumento int,
@@ -1037,7 +1039,7 @@ INSERT INTO INVENTARIOS (id_inventario,id_material,id_tipo_movimiento,fecha,cant
 INSERT INTO INVENTARIOS(id_inventario,id_material,id_tipo_movimiento,fecha,cantidad)VALUES(28,25,2,'2017-7-07',2);
 
 
---  INSERT DE  PROCEDIMIENTOS INSTRUMENTOS
+-- INSERT DE  PROCEDIMIENTOS INSTRUMENTOS
 
  
 INSERT INTO PROCEDIMIENTOS_X_INSTRUMENTOS(id_proc_instrumento,id_proc_odontologico,id_material,cantidad)VALUES(1,1,11,32);
